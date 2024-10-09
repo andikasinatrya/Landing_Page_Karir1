@@ -21,6 +21,7 @@
 body {
   background: var(--bg-color);
   color: var(--text-color);
+  scroll-behavior: smooth;
 }
 
 header {
@@ -33,7 +34,7 @@ header {
   align-items: center;
   justify-content: space-between;
   background: var(--second-color);
-  padding: 5px 18%;
+  padding: 5px 10%;
   transition: ease 0.4s;
 }
 
@@ -43,11 +44,17 @@ header {
   letter-spacing: 1px;
   color: var(--bg-color);
 }
+
 .navbar {
   display: flex;
 }
 
-.navbar a {
+.hamburger-menu {
+  display: none;
+}
+
+.navbar a,
+.hamburger-menu a {
   color: var(--bg-color);
   font-size: var(--p-font);
   font-weight: 500;
@@ -56,16 +63,17 @@ header {
   transition: ease 0.7s;
 }
 
-.navbar a:hover {
+.navbar a:hover,
+.hamburger-menu a:hover {
   background: var(--bg-color);
   color: var(--text-color);
   box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
-  border-radius: 4px;
 }
 
 section {
   padding: 80px 18%;
 }
+
 .home {
   position: relative;
   width: 100%;
@@ -103,7 +111,7 @@ section {
 }
 
 .home-text h1 {
-  font-size: var(--big-font);
+  font-size: calc(3rem + 2vw);
   line-height: 1.2;
   color: var(--bg-color);
   font-family: "Paytone One", sans-serif;
@@ -113,10 +121,29 @@ section {
 
 .home-text p {
   color: #ffffffbf;
-  font-size: 20px;
+  font-size: calc(1rem + 1vw);
   font-weight: 400;
   line-height: 38px;
   margin-bottom: 50px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+
+  .home-text h1 {
+    font-size: 4rem;
+  }
+
+  .home-text p {
+    font-size: 1rem;
+  }
+
+  .hamburger-menu {
+    display: flex;
+    position: relative;
+  }
 }
 
 .home-btn {
@@ -126,12 +153,15 @@ section {
   background: #ffffffbf;
   color: var(--main-color);
   border-radius: 4px;
-  transition: ease 0.4s;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 10;
 }
 
 .home-btn:hover {
   background: var(--bg-color);
   transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .text h2 {
@@ -150,7 +180,7 @@ section {
 
 .container-box {
   background: var(--bg-color);
-  border: 1px solid #f0eded;
+  border: 1px solid #dfdcdc;
   padding: 50px 10px;
   border-radius: 4px;
   transition: all 1s ease 0s;
@@ -459,6 +489,7 @@ section {
   background-color: #25c5c5;
   padding: 6px 15px;
 }
+
 .faq {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -474,6 +505,7 @@ section {
 .faq .title h2 {
   font-size: var(--h2-font);
   color: var(--text-color);
+  text-align: center;
 }
 
 .faq .container-faq {
@@ -487,6 +519,11 @@ section {
   box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
   border-radius: 5px;
   overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.faq .tab:hover {
+  transform: translateY(-5px);
 }
 
 .faq .tab input {
@@ -584,7 +621,7 @@ section {
 
 .faq .tab .content {
   max-height: 0;
-  transition: 1s;
+  transition: max-height 1s ease-in-out;
   overflow: hidden;
 }
 
@@ -602,6 +639,28 @@ section {
 
 .faq .tab input:checked ~ .content p {
   color: var(--bg-color);
+}
+
+@media (max-width: 600px) {
+  .faq {
+    display: block;
+  }
+
+  .faq .tab {
+    margin-bottom: 20px;
+  }
+
+  .faq .tab label h3 {
+    font-size: 1em;
+  }
+
+  .faq .tab label h4 {
+    font-size: 1em;
+  }
+
+  .faq .tab .content {
+    padding: 10px;
+  }
 }
 
 .destination-content {
@@ -772,7 +831,6 @@ section {
 }
 
 .footer__rights {
-  overflow: hidden;
   padding: 10px 0;
   text-align: center;
 }
@@ -784,10 +842,10 @@ section {
 }
 
 .footer__terms {
+  left: 150px;
   display: inline-block;
   text-align: center;
   position: relative;
-  left: 150px;
 }
 
 .footer__terms-link {
@@ -798,4 +856,10 @@ section {
 
 .footer__terms-link:hover {
   color: var(--bg-color);
+}
+
+@media (max-width: 768px) {
+  .footer__terms {
+    left: -58px;
+  }
 }
